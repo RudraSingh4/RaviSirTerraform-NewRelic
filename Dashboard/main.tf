@@ -1,23 +1,24 @@
 resource "newrelic_one_dashboard" "exampledash" {
-  name        = "New Relic Terraform Example"
-  permissions = "public_read_only"
+  for_each = var.value
+  name        = each.value.name
+  permissions = each.value.permissions
 
   page {
-    name = "New Relic Terraform Example"
+    name = each.value.pagename
 
     widget_billboard {
-      title  = "Requests per minute"
+      title  = each.value.title
       row    = 1
       column = 1
       width  = 6
       height = 3
 
       nrql_query {
-        query = "FROM Transaction SELECT rate(count(*), 1 minute)"
+        query = each.value.query
       }
     }
      widget_bar {
-      title  = "Average transaction duration, by application"
+      title  = each.value.title2
       row    = 1
       column = 7
       width  = 6
@@ -25,13 +26,8 @@ resource "newrelic_one_dashboard" "exampledash" {
 
       nrql_query {
         account_id = 3931862
-        query      = "FROM Transaction SELECT average(duration) FACET appName"
+        query      = each.value.query2
       }
     }
   }
 }
-
-
-   
-
-    #   linked_entity_guids = ["abc123"]
