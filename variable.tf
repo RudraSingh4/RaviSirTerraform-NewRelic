@@ -33,7 +33,7 @@
 #   type = string
 # }
 
-variable "data" {
+variable "value" {
   type = list(any)
-  
+
 }

@@ -3,22 +3,22 @@ resource "newrelic_alert_policy" "alert" {
 }
 # Add a condition
 resource "newrelic_nrql_alert_condition" "Test" {
-  count                        = length(var.data)
+  count                        = length(var.value)
   policy_id                    = newrelic_alert_policy.alert.id
   type                         = "static"
-  name                         = var.data[count.index]["name"]
-  description                  = var.data[count.index]["description"]
-  runbook_url                  = var.data[count.index]["runbook_url"]
-  enabled                      = var.data[count.index]["enabled"]
-  violation_time_limit_seconds = var.data[count.index]["violation_time_limit_seconds"]
+  name                         = var.value[count.index]["Name"]
+  description                  = var.value[count.index]["description"]
+  runbook_url                  = var.value[count.index]["url"]
+  enabled                      = var.value[count.index]["enabled"]
+  violation_time_limit_seconds = var.value[count.index]["violation_time_limit_seconds"]
   nrql {
     query = "SELECT average(host.cpuPercent) AS 'CPU used %' FROM Metric WHERE `entityGuid` = 'MzkzMzUyOHxJTkZSQXxOQXwyMjc2MjE3MDc2MTMwMzAzMTA'"
   }
   critical {
-    operator              = var.data[count.index]["operator"]
-    threshold             = var.data[count.index]["threshold"]
-    threshold_duration    = var.data[count.index]["threshold_duration"]
-    threshold_occurrences = var.data[count.index]["threshold_occurrence"]
+    operator              = var.value[count.index]["operator"]
+    threshold             = var.value[count.index]["threshold"]
+    threshold_duration    = var.value[count.index]["threshold_duration"]
+    threshold_occurrences = var.value[count.index]["threshold_occurrences"]
   }
 }
 /*
