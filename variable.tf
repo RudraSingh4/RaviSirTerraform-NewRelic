@@ -1,3 +1,8 @@
+variable "value" {
+  type = any
+
+}
+
 # variable "account_id" {
 #   description = "The account ID the application reports to"
 #   type        = number
@@ -33,7 +38,3 @@
 #   type = string
 # }
 
-variable "value" {
-  type = list(any)
-
-}

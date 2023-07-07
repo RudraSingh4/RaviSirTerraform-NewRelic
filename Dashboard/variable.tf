@@ -1,4 +1,4 @@
 variable "value" {
-    type = map(any)
+    type = any
   
 }
