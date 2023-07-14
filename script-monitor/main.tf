@@ -1,12 +1,12 @@
 # API BROWSER 
-resource "newrelic_synthetics_script_monitor" "monitor" {
+resource "newrelic_synthetics_script_monitor" "monitor006" {
   for_each = var.api-monitor
   status               = each.value.status
   name                 = each.value.name
   type                 = each.value.type
-  locations_public     = [for i in each.value.locations_public:i]
+  locations_public     = each.value.location_public
   period               = each.value.period
-  script               = each.value.script
+  script = file("1st.js")
   script_language      = each.value.script_language
   runtime_type         = each.value.runtime_type
   runtime_type_version = each.value.runtime_type_version
@@ -14,26 +14,27 @@ resource "newrelic_synthetics_script_monitor" "monitor" {
 }
 
 # SCRIPT SCRIPT_BROWSER 
-# resource "newrelic_synthetics_script_monitor" "monitor1" {
-#     for_each = var.browser-monitor
-#   status           = each.value.status
-#   name             = each.value.name
-#   type             = each.value.type
-#   locations_public = [for i in each.value.locations_public:i]
-#   period           = each.value.period
+resource "newrelic_synthetics_script_monitor" "monitor007" {
+    for_each = var.browser-monitor
+  status           = each.value.status
+  name             = each.value.name
+  type             = each.value.type
+  locations_public = each.value.locations_public
+  period           = each.value.period
 
-#   enable_screenshot_on_failure_and_script = false
+  enable_screenshot_on_failure_and_script = false
 
-#   script = var.value.script
+ script = file("2nd.js")
 
-#   runtime_type_version = each.value.runtime_type_version
-#   runtime_type         = each.value.runtime_type
-#   script_language      = each.value.script_language
 
-#   tag {
-#     key    = "some_key"
-#     values = ["some_value"]
-#   }
-# }
+  runtime_type_version = each.value.runtime_type_version
+  runtime_type         = each.value.runtime_type
+  script_language      = each.value.script_language
+
+  tag {
+    key    = "some_key"
+    values = ["some_value"]
+  }
+}
 
 

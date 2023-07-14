@@ -1,5 +1,5 @@
 api-monitor = {
-  monitor1 = {
+  monitor001 = {
     status           = "ENABLED"
     name             = "script_monitor"
     type             = "SCRIPT_API"
@@ -13,7 +13,7 @@ api-monitor = {
     runtime_type_version = "16.10"
   }
 
-  monitor2 = {
+  monitor002 = {
     status           = "ENABLED"
     name             = "script_monitor"
     type             = "SCRIPT_API"
@@ -29,7 +29,7 @@ api-monitor = {
 }
 
 browser-monitor={
-  monitor1 = {
+  monitor003 = {
     status           = "ENABLED"
     name             = "script_monitor"
     type             = "SCRIPT_API"
@@ -43,7 +43,7 @@ browser-monitor={
     runtime_type_version = "16.10"
   }
 
-  monitor2 = {
+  monitor004 = {
     status           = "ENABLED"
     name             = "script_monitor"
     type             = "SCRIPT_API"
