@@ -1,9 +1,5 @@
 variable "data1" {
-    type=list(any)
+    type=map(any)
   
 }
 
-variable "data2" {
-    type=any
-  
-}

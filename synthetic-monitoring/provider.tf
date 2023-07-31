@@ -1,12 +1,10 @@
 terraform {
-#   required_version = ">= 0.12.6"
-
   required_providers {
     newrelic = {
-      source  = "newrelic/newrelic"
-    #   version = "~> 2.21"
+      source = "newrelic/newrelic"
+      version = "3.26.0"
     }
-  } 
+  }
 }
 # Configure the New Relic provider
 provider "newrelic" {

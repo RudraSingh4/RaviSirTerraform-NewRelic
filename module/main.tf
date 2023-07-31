@@ -4,18 +4,18 @@ module "resource" {
   
 }
 
-# module "resource1" {
-#     source = "./script_monitor"
-#     value1 = var.mod2
+module "resource1" {
+    source = "./script_monitor"
+    value1 = var.mod2
     
       
-# }
+}
 
-# module "synthetic_monitor" {
-#     source = "./synthetic_monitor"
-#     data1 = var.mod3
+module "synthetic_monitor" {
+    source = "./synthetic_monitor"
+    data1 = var.mod3
   
-# }
+}
 
 module "workload" {
     source = "./workload"

@@ -1,0 +1,4 @@
+variable "practice" {
+    type = any
+  
+}

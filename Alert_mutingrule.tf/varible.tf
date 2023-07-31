@@ -1,0 +1,3 @@
+variable "Mutingrule" {
+  type=any
+}

@@ -35,4 +35,4 @@ resource "newrelic_workload" "workload" {
       }
     }
   }
-}
+} 

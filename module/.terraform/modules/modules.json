@@ -1,1 +1,1 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"resource","Source":"./alert","Dir":"alert"},{"Key":"workload","Source":"./workload","Dir":"workload"}]}
+{"Modules":[{"Key":"workload","Source":"./workload","Dir":"workload"},{"Key":"resource1","Source":"./script_monitor","Dir":"script_monitor"},{"Key":"synthetic_monitor","Source":"./synthetic_monitor","Dir":"synthetic_monitor"},{"Key":"","Source":"","Dir":"."},{"Key":"resource","Source":"./alert","Dir":"alert"}]}
