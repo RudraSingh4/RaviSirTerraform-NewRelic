@@ -3,7 +3,7 @@ variable "api-monitor" {
   
 }
 
-# variable "browser-monitor" {
-#     type = any
+variable "browser-monitor" {
+    type = map(any)
   
-# }
+}

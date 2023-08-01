@@ -1,0 +1,4 @@
+variable "workflow" {
+    type = any
+  
+}
