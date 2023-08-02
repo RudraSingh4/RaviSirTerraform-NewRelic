@@ -1,11 +1,11 @@
-resource "newrelic_alert_policy" "foo" {
+resource "newrelic_alert_policy" "policy1" {
   name = "foo"
 }
 
 resource "newrelic_nrql_alert_condition" "foo" {
   count                          = length(var.slack)
   account_id                     = var.slack[count.index]["account_id"]
-  policy_id                      = var.slack[count.index]["policy_id"]
+  policy_id                      = newrelic_alert_policy.policy1.id
   type                           = var.slack[count.index]["type"]
   name                           = var.slack[count.index]["name"]
   description                    = var.slack[count.index]["description"]
@@ -51,7 +51,7 @@ resource "newrelic_notification_channel" "foo" {
 
   property {
     key   = "channelId"
-    value = "123456"
+    value = "C05KB2N9HT9"
   }
 
   property {
@@ -60,8 +60,24 @@ resource "newrelic_notification_channel" "foo" {
   }
 }
 
-resource "newrelic_notification_destination" "foo" {
-}
-
 # create workflow 
+resource "newrelic_workflow" "workflow" {
+  count = length(var.workflow)
+  name = var.workflow[count.index]["name2"]
+  muting_rules_handling = var.workflow[count.index]["muting_rules_handling"]
 
+  issues_filter {
+    name = "filter-name"
+    type = "FILTER"
+
+    predicate {
+      attribute = "labels.policuIds"
+      operator = "EXACTLY_MATCHES"
+      values = [ "newrelic_alert_policy.policy1.id" ]
+    }
+  }
+
+  destination {
+    channel_id = var.workflow[count.index]["channel_id"]
+  }
+}

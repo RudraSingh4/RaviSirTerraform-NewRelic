@@ -1,8 +1,13 @@
 variable "slack" {
-    type = map(any)
+    type = any
 }
 
 variable "channel_slack" {
+    type = any
+  
+}
+
+variable "workflow" {
     type = any
   
 }

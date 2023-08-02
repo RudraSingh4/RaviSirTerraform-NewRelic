@@ -1,7 +1,7 @@
 slack = [
   {
     account_id                     = 3931862
-    policy_id                      = newrelic_alert_policy.foo.id
+    # policy_id                      = "newrelic_alert_policy.policy1.id"
     type                           = "static"
     name                           = "foo"
     description                    = "Alert when transactions are taking too long"
@@ -34,8 +34,15 @@ channel_slack = [
     account_id     = 3931862
     name1          = "slack-example"
     type1          = "SLACK"
-    destination_id = "3503f1a4-5974-4e35-8cbe-1194c7df908f"
+    destination_id = "1fc038ce-4e44-454d-967e-2d533273eee6"
     product        = "IINT"
   }
 ]
 
+workflow = [
+  {
+    name2                 = "slack_workflow"
+    muting_rules_handling = "NOTIFY_ALL_ISSUES"
+    channel_id            = "newrelic_notification_channel.foo['channel_slack'].id"
+  }
+]
