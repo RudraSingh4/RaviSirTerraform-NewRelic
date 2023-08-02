@@ -1,7 +1,7 @@
-workflow = {
-  val = {
+slack = [
+  {
     account_id                     = 3931862
-    policy_id                      = "newrelic_alert_policy.foo.id"
+    policy_id                      = newrelic_alert_policy.foo.id
     type                           = "static"
     name                           = "foo"
     description                    = "Alert when transactions are taking too long"
@@ -17,7 +17,7 @@ workflow = {
     open_violation_on_expiration   = true
     close_violations_on_expiration = true
     slide_by                       = 30
-    query                          = "SELECT average(host.cpuPercent) AS 'CPU used %' FROM Metric WHERE `entityGuid` = 'MzkzMTg2MnxJTkZSQXxOQXw2ODI5NTY5OTYwNDkwMzc2NTYw'"
+    query                          = "SELECT latest(host.disk.usedPercent) as 'Used %' FROM Metric FACET device WHERE `entityGuid` = 'MzkzMTg2MnxJTkZSQXxOQXw2ODI5NTY5OTYwNDkwMzc2NTYw'"
     operator                       = "above"
     threshold                      = 5.5
     threshold_duration             = 300
@@ -26,26 +26,16 @@ workflow = {
     threshold1                     = 3.5
     threshold_duration1            = 600
     threshold_occurrences1         = "ALL"
-    name3                          = "workflow-example"
-    muting_rules_handling          = "NOTIFY_ALL_ISSUES"
-    channel_id                     = "newrelic_notification_channel.foo['val2'].id"
   }
-}
+]
 
-destination = {
-  val1 = {
-    account_id1 = 3931862
-    name2       = "email-example"
-    type2       = "EMAIL"
-  }
-}
-
-channel = {
-  val2 = {
+channel_slack = [
+  {
     account_id     = 3931862
-    name1          = "email-example"
-    type1          = "EMAIL"
-    destination_id = "newrelic_notification_destination.foo['val1'].id"
+    name1          = "slack-example"
+    type1          = "SLACK"
+    destination_id = "3503f1a4-5974-4e35-8cbe-1194c7df908f"
     product        = "IINT"
   }
-}
+]
+

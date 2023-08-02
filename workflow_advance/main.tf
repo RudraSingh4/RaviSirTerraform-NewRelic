@@ -42,7 +42,7 @@ resource "newrelic_nrql_alert_condition" "foo" {
 }
 
 resource "newrelic_notification_channel" "foo" {
-  for_each = var.workflow
+  for_each = var.channel
   account_id = each.value.account_id
   name = each.value.name1
   type = each.value.type1
@@ -60,7 +60,7 @@ resource "newrelic_notification_channel" "foo" {
   }
 }
 resource "newrelic_notification_destination" "foo" {
-    for_each = var.workflow
+    for_each = var.destination
   account_id = each.value.account_id1
   name = each.value.name2
   type = each.value.type2
