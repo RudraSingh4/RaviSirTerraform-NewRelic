@@ -3,7 +3,7 @@ resource "newrelic_alert_policy" "foo" {
 }
 
 resource "newrelic_nrql_alert_condition" "foo" {
-    for_each = var.workflow
+  for_each                       = var.workflow
   account_id                     = each.value.account_id
   policy_id                      = newrelic_alert_policy.foo.id
   type                           = each.value.type
@@ -41,39 +41,40 @@ resource "newrelic_nrql_alert_condition" "foo" {
   }
 }
 
-resource "newrelic_notification_channel" "foo" {
-  for_each = var.channel
-  account_id = each.value.account_id
-  name = each.value.name1
-  type = each.value.type1
-  destination_id = each.value.destination_id
-  product = each.value.product
+
+resource "newrelic_notification_destination" "notification" {
+  for_each   = var.destination
+  account_id = each.value.account_id1
+  name       = each.value.name2
+  type       = each.value.type2
 
   property {
-    key = "subject"
+    key   = "email"
+    value = "rishurudra06@gmail.com"
+  }
+}
+resource "newrelic_notification_channel" "channel" {
+  for_each       = var.channel
+  account_id     = each.value.account_id
+  name           = each.value.name1
+  type           = each.value.type1
+  destination_id = newrelic_notification_destination.notification["val1"].id
+  product        = each.value.product
+
+  property {
+    key   = "subject"
     value = "New Subject Title"
   }
 
   property {
-    key = "customDetailsEmail"
+    key   = "customDetailsEmail"
     value = "issue id - {{issueId}}"
-  }
-}
-resource "newrelic_notification_destination" "foo" {
-    for_each = var.destination
-  account_id = each.value.account_id1
-  name = each.value.name2
-  type = each.value.type2
-
-  property {
-    key = "email"
-    value = "rishurudra06@gmail.com"
   }
 }
 
 resource "newrelic_workflow" "foo" {
-    for_each = var.workflow
-  name = each.value.name3
+  for_each              = var.workflow
+  name                  = each.value.name3
   muting_rules_handling = each.value.muting_rules_handling
 
   issues_filter {
@@ -82,12 +83,13 @@ resource "newrelic_workflow" "foo" {
 
     predicate {
       attribute = "accumulations.sources"
-      operator = "EXACTLY_MATCHES"
-      values = [ "newrelic" ]
+      operator  = "EXACTLY_MATCHES"
+      values    = ["newrelic"]
     }
   }
 
   destination {
-    channel_id = each.value.channel_id
+    # channel_id = each.value.channel_id
+    channel_id = newrelic_notification_channel.channel["val2"].id
   }
 }

@@ -1,3 +1,22 @@
+
+destination = {
+  val1 = {
+    account_id1 = 3931862
+    name2       = "email-example"
+    type2       = "EMAIL"
+  }
+}
+
+channel = {
+  val2 = {
+    account_id     = 3931862
+    name1          = "email-example"
+    type1          = "EMAIL"
+    # destination_id = "newrelic_notification_destination.notification["val1"].id"
+    product        = "IINT"
+  }
+}
+
 workflow = {
   val = {
     account_id                     = 3931862
@@ -28,24 +47,6 @@ workflow = {
     threshold_occurrences1         = "ALL"
     name3                          = "workflow-example"
     muting_rules_handling          = "NOTIFY_ALL_ISSUES"
-    channel_id                     = "newrelic_notification_channel.foo['val2'].id"
-  }
-}
-
-destination = {
-  val1 = {
-    account_id1 = 3931862
-    name2       = "email-example"
-    type2       = "EMAIL"
-  }
-}
-
-channel = {
-  val2 = {
-    account_id     = 3931862
-    name1          = "email-example"
-    type1          = "EMAIL"
-    destination_id = "newrelic_notification_destination.foo['val1'].id"
-    product        = "IINT"
+    # channel_id                     = "newrelic_notification_channel.channel['val2'].id"
   }
 }

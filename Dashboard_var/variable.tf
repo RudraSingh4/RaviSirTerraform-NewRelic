@@ -1,0 +1,4 @@
+variable "value" {
+    type = any
+  
+}
